@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasMany(models.Article, {foreignKey: 'creatorId', as: 'creator'})
+      User.belongsToMany(models.Article, {as: 'bookmarks', through: models.UserBookmark})
     }
   }
   User.init(
